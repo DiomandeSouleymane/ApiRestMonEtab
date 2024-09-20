@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" th:fragment="html"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon Etab - Connexion</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-4">
+            <div class="login-form text-center">
+                <img src="logo.png" alt="Logo de l'établissement" class="logo">
+                <h2 class="text-center m-3 text-light">Ajouter Les Paramètres de l'école</h2>
+
+
+                <form th:action="@{/schools}" method="post" class="w-75 py-5" th:object="${school}"
+                      enctype="multipart/form-data">
+                    <h1 th:text="${school.id_school == null} ? 'Ajouter un paramètre' : 'Modifier un paramètre'"></h1>
+
+                    <div class="form-group">
+                        <div class="form-group">
+                            <input th:field="*{nameSchool}" type="text" class="form-control" placeholder="NAME SCHOOL"
+                                   required>
+                        </div>
+
+                    </div>
+                    <div class="form-group">
+                        <input th:field="*{urlLogo}" type="text" class="form-control" placeholder="URL LOGO" required>
+                    </div>
+
+                    <div>
+
+                        <button type="button" style="background-color: coral;">
+                            <a th:href="@{/schools/update/{id}(id=${school.id_school})}">Modifier le paramètre</a>
+                        </button>
+                        <button type="submit" style="background-color: crimson;">Enregistrer le paramètre</button>
+
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

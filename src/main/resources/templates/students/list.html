@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" th:fragment="html"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:insert="fragments/fragment :: head"></head>
+<body>
+<div class="containerPrincipal">
+    <div th:insert="fragments/fragment :: header"></div>
+    <div class="containerDroit">
+        <div class="enTete">
+            <h2>Élèves <span th:text="${students.size()}"></span></h2>
+            <ul>
+                <a href="/students/add" class="lien-menu">
+                    <li><img src="fontawesome/svgs/solid/plus.svg" alt="">Nouvel élève</li>
+                </a>
+            </ul>
+            <div th:if="${message}" class="alert alert-success" role="alert">
+                <span th:text="${message}"></span>
+            </div>
+        </div>
+
+        <!-- Barre de recherche -->
+        <div>
+
+            <form class="d-flex" role="search" method="get" th:action="@{/students/search}">
+                <input class="form-control me-2 w-100" th:value="${query}" name="query" type="search"
+                       placeholder="RECHERCHE : (NOM , GENRE , MATRICULE)" aria-label="Search">
+                <select name="gender" class="form-control" th:value="${gender}">
+                    <option value="MAN" th:if="${gender== 'MAN'} ? 'selected':''">HOMME</option>
+                    <option value="WOMAN" th:if="${gender == 'WOMAN'} ? 'selected':''">FEMME</option>
+                    <option value="OTHER" th:if="${gender == 'OTHER'} ? 'selected':''">AUTRE</option>
+                </select>
+                <button class="btn btn-outline-success" type="submit">Rechercher</button>
+            </form>
+        </div>
+        <div>
+
+            <table>
+                <thead>
+                <tr>
+                    <th>Nom</th>
+                    <th>Prénom</th>
+                    <th>Matricule</th>
+                    <th>Téléphone Parent</th>
+                    <th>Téléphone</th>
+                    <th>Birthday</th>
+                    <th>Genre</th>
+                    <th>Classe</th>
+                    <th>UrlPicture</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="student : ${students}">
+                    <td th:text="${student.firstName}"></td>
+                    <td th:text="${student.lastName}"></td>
+                    <td th:text="${student.matricule}"></td>
+                    <td th:text="${student.phoneNumberFather}"></td>
+                    <td th:text="${student.phoneNumber}"></td>
+                    <td th:text="${student.birthday}"></td>
+                    <td th:text="${student.gender}"></td>
+                    <td th:text="${student.classe}"></td>
+                    <td th:text="${student.urlPicture}"></td>
+                    <td>
+                        <button style="background-color: coral;">
+                            <a th:href="@{/students/update/{id}(id=${student.id})}">Modifier</a>
+                        </button>
+                        <button class="supprimer" style="background-color: crimson;">
+                            <a th:href="@{/students/delete/{id}(id=${student.id})}" method="post"
+                               onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer ce professeur ?');">
+                                Supprimer
+                            </a>
+                        </button>
+
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>

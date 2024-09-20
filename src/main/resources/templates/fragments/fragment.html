@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+>
+<head th:fragment="head">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/student.css">
+    <link rel="stylesheet" href="/css/login.css">
+    <link rel="stylesheet" href="/css/home.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/fontawesome/css/all.css">
+    <title>Title</title>
+</head>
+<body>
+<div class="containerGauche" th:fragment="header">
+    <div class="up">
+        <h1><img id="iconsEtab" src="/icons/school-solid.svg" alt="">Mon Etab</h1>
+        <div class="separateur"></div>
+        <hr>
+        <ul>
+            <a href="/home" class="lien-menu">
+                <li class="menuHorizontal"><img src="/fontawesome/svgs/solid/square-poll-horizontal.svg" alt="">Tableau
+                    de bord
+                </li>
+            </a>
+            <br>
+            <a href="/students" class="lien-menu">
+                <li class="menuHorizontal"><img src="/fontawesome/svgs/solid/user-large-slash.svg" alt="">Élèves</li>
+            </a>
+            <br>
+            <a href="/teachers" class="lien-menu">
+                <li class="menuHorizontal"><img src="/fontawesome/svgs/solid/person-chalkboard.svg" alt="">Professeurs
+                </li>
+            </a>
+            <br>
+            <a href="/users" class="lien-menu">
+                <li class="menuHorizontal"><img src="/fontawesome/svgs/solid/user.svg" alt="">Utilisateurs</li>
+            </a>
+            <br>
+            <a href="/reports" class="lien-menu">
+                <li class="menuHorizontal"><img src="/fontawesome/svgs/solid/chart-pie.svg" alt="">Rapport</li>
+            </a>
+            <br>
+            <!-- Nouvelle option : Documentation Swagger -->
+            <a th:href="@{http://localhost:8080/swagger-ui/index.html}" class="lien-menu">
+                <li class="menuHorizontal">
+                    <img src="/fontawesome/svgs/solid/swagger-svgrepo-com.svg" alt="">
+                    Documentation Swagger
+                </li>
+            </a>
+
+            <br>
+
+            <a href="https://documenter.getpostman.com/view/38213649/2sAXqp947y" class="lien-menu" target="_blank">
+                <li class="menuHorizontal"><img src="/fontawesome/svgs/solid/postman-icon-svgrepo-com.svg" alt="">Documentation
+                    Postman
+                </li>
+            </a>
+            <br>
+            <!-- Option : Paramètres de l'école -->
+            <a href="/schools" class="lien-menu">
+                <li class="menuHorizontal"><img src="/icons/school-solid.svg" alt="">Paramètres de l'école</li>
+            </a>
+            <br>
+            <!-- Option : Paramètres de l'application -->
+            <a href="/settings" class="lien-menu">
+                <li class="menuHorizontal"><img src="/fontawesome/svgs/solid/settings-cog-svgrepo-com.svg" alt="">Paramètres
+                    de l'application
+                </li>
+            </a>
+        </ul>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="down">
+    <br>
+    <ul>
+        <!-- Formulaire pour la déconnexion -->
+        <li id="logout">
+            <form th:action="@{/logout}" method="post">
+                <button type="submit" class="logout-button">
+                    <img src="/fontawesome/svgs/solid/right-from-bracket.svg" alt="">Déconnexion
+                </button>
+            </form>
+        </li>
+    </ul>
+    </div>
+</div>
+
+
+<th:block th:fragment="script_fragment">
+    <script th:src="@{https://cdn.jsdelivr.net/npm/chart.js}"></script>
+    <script th:src="@{http://localhost:35729/livereload.js}"></script>
+    <script th:src="@{/fontawesome/js/all.js}"></script>
+</th:block>
+</body>
+</html>

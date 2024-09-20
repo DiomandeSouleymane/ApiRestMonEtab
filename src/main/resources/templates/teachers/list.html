@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" th:fragment="html"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:insert="fragments/fragment :: head"></head>
+<body>
+<div class="containerPrincipal">
+    <div th:insert="fragments/fragment :: header"></div>
+    <div class="containerDroit">
+        <div class="enTete">
+            <h2>Professeurs <span th:text="${teachers.size()}">></span></h2>
+            <ul>
+                <a href="/teachers/add" class="lien-menu">
+                    <li><img src="/fontawesome/svgs/solid/plus.svg" alt="">Nouvel professeur</li>
+                </a>
+            </ul>
+        </div>
+
+        <!-- Barre de recherche -->
+        <form th:action="@{/teachers/search}" method="get" class="form-inline">
+            <input type="text" name="query" placeholder="Rechercher un professeur..." class="form-control" style="width: 80%;">
+            <button type="submit" class="btn btn-primary">Rechercher</button>
+        </form>
+
+        <table>
+            <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>UrlPicture</th>
+                <th>Téléphone</th>
+                <th>Specialty</th>
+                <th>Available</th>
+                <th>Genre</th>
+                <th>Birthday</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="teacher : ${teachers}">
+                <td th:text="${teacher.lastName}"></td>
+                <td th:text="${teacher.firstName}"></td>
+                <td th:text="${teacher.urlPicture}"></td>
+                <td th:text="${teacher.phoneNumber}"></td>
+                <td th:text="${teacher.specialty}"></td>
+                <td th:text="${teacher.available}"></td>
+                <td th:text="${teacher.gender}"></td>
+                <td th:text="${teacher.birthday}"></td>
+                <td>
+                    <button style="background-color: coral;">
+                        <a th:href="@{/teachers/{id}(id=${teacher.id})}">Modifier</a>
+                    </button>
+                    <button style="background-color: coral;">
+                        <a th:href="@{/teachers/update/{id}(id=${teacher.id})}">Modifier</a>
+                    </button>
+                    <button class="supprimer" style="background-color: crimson;">
+                        <a th:href="@{/teachers/delete/{id}(id=${teacher.id})}"
+                           onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce professeur ?');">
+                            Supprimer
+                        </a>
+                    </button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script src="js/messageAlertP.js"></script>
+</div>
+</body>
+</html>

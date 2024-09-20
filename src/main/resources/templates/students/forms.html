@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" th:fragment="html"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:insert="fragments/fragment :: head"></head>
+<body>
+<div class="containerPrincipal">
+    <div th:insert="fragments/fragment :: header"></div>
+    <div class="containerDroit">
+        <div class="enTete">
+            <div></div>
+            <ul style="">
+                <a href="/students" class="lien-menu">
+                    <li ><img src="/fontawesome/svgs/solid/backward.svg" alt="">Retour</li>
+                </a>
+            </ul>
+        </div>
+
+        <form th:object="${student}" th:action="@{/students}" method="post">
+            <h1 th:text="${student.id == null} ? 'Ajouter un professeur' : 'Modifier un professeur'"></h1>
+            <!-- Champ caché pour l'ID -->
+            <input type="hidden" th:field="*{id}" />
+
+            <div class="form-group">
+                <!-- Nom et Prénom -->
+                <input th:field="*{lastName}" type="text" placeholder="NOM" required>
+                <input th:field="*{firstName}" type="text" placeholder="PRÉNOM" required>
+            </div>
+
+            <div class="form-group">
+                <!-- Matricule et Numéro de téléphone du père -->
+                <input th:field="*{matricule}" type="text" placeholder="MATRICULE" required>
+                <input th:field="*{phoneNumberFather}" type="text" placeholder="NUMÉRO DU PÈRE" required>
+            </div>
+
+            <div class="form-group">
+                <!-- Téléphone de l'élève et Date de naissance -->
+                <input th:field="*{phoneNumber}" type="text" placeholder="TÉLÉPHONE" required>
+                <input th:field="*{birthday}" type="date" placeholder="DATE DE NAISSANCE" required>
+            </div>
+
+            <div class="form-group">
+                <label>Genre:</label>
+                <label><input th:field="*{gender}" value="MAN" type="radio"> Homme</label>
+                <label><input th:field="*{gender}" value="WOMAN" type="radio"> Femme</label>
+                <label><input th:field="*{gender}" value="OTHER" type="radio"> Autre</label>
+            </div>
+
+            <div class="form-group">
+                <input th:field="*{urlPicture}" type="text" placeholder="URL de l'image" required>
+            </div>
+
+            <div class="form-group">
+                <!-- Classe -->
+                <select th:field="*{classe}" required>
+                    <option value="">Sélectionner une classe</option>
+                    <option value="6eme">6ème</option>
+                    <option value="5eme">5ème</option>
+                    <option value="4eme">4ème</option>
+                    <option value="3eme">3ème</option>
+                    <option value="2cndA">2nde A</option>
+                    <option value="2cndC">2nde C</option>
+                    <option value="1erD">1ère D</option>
+                    <option value="1erC">1ère C</option>
+                    <option value="TD">Terminale D</option>
+                    <option value="TC">Terminale C</option>
+                    <option value="TA">Terminale A</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <button type="submit">Enregistrer</button>
+            </div>
+        </form>
+
+
+
+    </div>
+</div>
+</body>
+</html>

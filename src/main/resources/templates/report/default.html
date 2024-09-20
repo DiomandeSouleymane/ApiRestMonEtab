@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" th:fragment="html"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+>
+<head th:insert="fragments/fragment :: head"></head>
+<body>
+    <div class="containerPrincipal">
+        <div th:insert="fragments/fragment :: header(school=${school})"></div>
+        <div class="containerDroit">
+            <div class="enTete">
+                <div></div>
+                <ul style="">
+                    <a href="/home" class="lien-menu">
+                        <li ><img src="/fontawesome/svgs/solid/backward.svg" alt="">Retour</li>
+                    </a>
+                </ul>
+            </div>
+            <form th:action="@{/reports/excel}" class="form-group" method="get" id="reportForm">
+                <h2 style="margin: 10px;">Rapport</h2>
+                <div class="form-group">
+                    <select name="classe" id="classe">
+                        <option value="">Sélectionner une option</option>
+                        <option value="student">Liste des élèves</option>
+                        <option value="teacher">Liste des professeurs</option>
+                        <option value="user">Liste des utilisateurs</option>
+                    </select>
+                </div>
+                <div class="form-group group-button" style="margin: -5px;margin-top: 10px;">
+                    <input type="hidden" name="query" id="query">
+                    <button type="button" onclick="generateReport('pdf')">Générer format PDF</button>
+                    <button type="button" onclick="generateReport('excel')">Générer format Excel</button>
+                </div>
+            </form>
+
+            <script>
+                function generateReport(format) {
+                    const selectedClass = document.getElementById('classe').value;
+
+                    // Vérifier si une classe est sélectionnée
+                    if (!selectedClass) {
+                        alert('Veuillez sélectionner une option.');
+                        return;
+                    }
+
+                    // Choisir l'URL de génération en fonction du format
+                    let url = '/reports/report/' + selectedClass + '/' + format;
+
+                    // Rediriger vers l'URL pour générer le fichier
+                    window.location.href = url;
+                }
+            </script>
+
+
+
+        </div>
+    </div>
+</body>
+</html>

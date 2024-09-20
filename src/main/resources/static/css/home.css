@@ -1,0 +1,147 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Roboto" , sans-serif;
+}
+
+body{
+    background-color: #d9d6d6;
+}
+
+li{
+    list-style-type: none;
+}
+
+button{
+    width: 150px;
+    padding: 10px;
+    background-color: 0;
+}
+
+img{
+    width: 20px;
+    margin-right: 10px;
+}
+
+#monEtabLogo{
+    width: 40px;
+}
+
+#iconsEtab{
+    width: 50px;
+    position: relative;
+    bottom: -8px;
+}
+
+.containerPrincipal{
+    display: flex;
+}
+
+/* Style partie gauche */
+.containerGauche{
+    border-right: 5px solid #999;
+    width: 250px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.up{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.up h1{
+    font-size: 25px;
+    margin: 15px;
+}
+
+#separateur{
+    margin-bottom:-240px;
+}
+
+.separateur{
+    background-color: #999;
+    height: 2px;
+    width: 200px;
+    margin-bottom: 35px;
+}
+
+
+.up ul{
+    height: 210px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.up ul li,#logout{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    width: 200px;
+    font-size: 15px;
+}
+
+#logout{
+    margin-bottom: 15px;
+}
+
+/* Style partie droit */
+
+.containerDroit{
+    width: 100%;
+}
+
+#containerDroit{
+    width: 50%;
+}
+
+.containerDroit h2{
+    font-size: 30px;
+}
+
+.containerDroit #dashbord{
+    transform : translate(50px , 50px);
+}
+
+.grid-container{
+    width: 500px;
+    transform: translate(50px , 50px);
+}
+
+.grip-template{
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Deux colonnes égales */
+    gap: 20px; /* Espace entre les items */
+}
+.grip{
+    width: 400px;
+    height: 260px;
+    background-color: #fff;
+    border: 2px solid #999;
+    border-radius: 10px;
+}
+
+.grip h3{
+    margin: 10px;
+    font-size: 15px;
+    font-weight: 300;
+}
+
+.resultat{
+    position: relative;
+    transform: translate(25% , 50%);
+    top: 30px;
+    font-size: 50px;
+}
+
+svg {
+    width: 250px;
+    height: 250px
+}

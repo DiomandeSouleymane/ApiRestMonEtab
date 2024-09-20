@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" th:fragment="html"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:insert="fragments/fragment :: head"></head>
+<body>
+<div class="containerPrincipal">
+    <div th:insert="fragments/fragment :: header"></div>
+    <div class="containerDroit">
+        <div class="enTete">
+            <h2>Utilisateurs <span th:text="${users.size()}"></span></h2>
+            <ul>
+                <li><a href="/users/add" class="lien-menu"><img src="/fontawesome/svgs/solid/plus.svg" alt="">Nouvel utilisateur</a></li>
+            </ul>
+        </div>
+
+
+        <!-- Barre de recherche -->
+        <form th:action="@{/users/search}" method="get" class="form-inline">
+            <input type="text" name="query" placeholder="Rechercher un professeur..." class="form-control" style="width: 80%;">
+            <button type="submit" class="btn btn-primary">Rechercher</button>
+        </form>
+
+        <table>
+            <thead>
+            <tr>
+                <th>Pseudo</th>
+                <th>Date de création</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="user : ${users}">
+                <td th:text="${user.pseudo}"></td>
+                <td th:text="${#dates.format(user.createdDate, 'dd MMM yyyy')}"></td>
+                <td>
+                    <button style="background-color: coral;">
+                    <a th:href="@{/users/{id}(id=${user.id_user})}" class="btn btn-warning">Modifier</a>
+                    </button>
+                    <button class="supprimer" style="background-color: crimson;">
+                    <a th:href="@{/users/delete/{id}(id=${user.id_user})}" class="btn btn-danger"
+                       onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet utilisateur ?');">Supprimer</a>
+                    </button>
+
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>

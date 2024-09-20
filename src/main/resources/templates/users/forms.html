@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" th:fragment="html"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:insert="fragments/fragment :: head"></head>
+<body>
+<div class="containerPrincipal">
+    <div th:insert="fragments/fragment :: header"></div>
+    <div class="containerDroit">
+        <div class="enTete">
+            <div></div>
+            <ul style="">
+                <a href="/users" class="lien-menu">
+                    <li ><img src="/fontawesome/svgs/solid/backward.svg" alt="">Retour</li>
+                </a>
+            </ul>
+        </div>
+        <form th:object="${user}" th:action="@{/users}" method="post">
+
+            <h1 th:text="${user.id_user == null} ? 'Ajouter un utilisateur' : 'Modifier un utilisateur'"></h1>
+
+
+            <div class="form-group">
+                <input  th:field="*{pseudo}" type="text" name="pseudo" id="pseudo" placeholder="PSEUDO:">
+
+                <input th:field="*{password}" type="password" name="motDePasse" id="motDePasse" placeholder="MOT DE PASSE:">
+            </div>
+            <div class="form-group">
+                <input th:field="*{password}"  type="password" name="confirmMotDePasse" id="confirmMotDePasse" placeholder="COMFIRMER MOT DE PASSE:">
+            </div>
+            <div class="form-group group-button" style="margin: 10px;">
+                <a href="/users" class="lien-menu">
+                    <button id="annuler" type="button">Annuler</button>
+                </a>
+                <button id="enregistrer" type="submit">Enregistrer</button>
+            </div>
+        </form>
+
+    </div>
+</div>
+</body>
+</html>

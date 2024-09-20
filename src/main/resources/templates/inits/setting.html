@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" th:fragment="html"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon Etab - Connexion</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<<!--div class="container-fluid d-flex align-items-center justify-content-center" style="background-color: orange; height: 100vh">
+-->
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-4">
+            <div class="login-form text-center">
+                <img src="logo.png" alt="Logo de l'établissement" class="logo">
+                <h1 class="h3 mb-3 font-weight-normal">Application Settings</h1>
+
+
+                <form th:action="@{/settings}" method="post" class="w-75 py-5" th:object="${setting}">
+
+                    <div class="form-group">
+                        <label for="smtp_server" class="form-label">SMTP Server:</label>
+                        <input th:field="*{smtpServer}" type="text" class="form-control" id="smtp_server" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="smtp_port" class="form-label">SMTP Port:</label>
+                        <input th:field="*{smtpPort}"  type="number" class="form-control" id="smtp_port" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="smtp_username" class="form-label">SMTP Username:</label>
+                        <input th:field="*{smtpUsername}" type="text" class="form-control" id="smtp_username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="smtp_password" class="form-label">SMTP Password:</label>
+                        <input  th:field="*{smtpPassword}"  type="password" class="form-control" id="smtp_password" required>
+                    </div>
+
+                    <br>
+                   <!-- <button type="submit" class="btn btn-primary">Save</button>-->
+                    <div class="form-group group-button">
+
+                        <button type="submit">Enregistrer</button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</body>
+</html>

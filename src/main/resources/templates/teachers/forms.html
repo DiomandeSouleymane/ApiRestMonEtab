@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" th:fragment="html"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:insert="fragments/fragment :: head"></head>
+<body>
+<div class="containerPrincipal">
+    <div th:insert="fragments/fragment :: header"></div>
+    <div class="containerDroit">
+        <div class="enTete">
+            <div></div>
+            <ul style="">
+                <a href="/students" class="lien-menu">
+                    <li ><img src="/fontawesome/svgs/solid/backward.svg" alt="">Retour</li>
+                </a>
+            </ul>
+        </div>
+               <form th:object="${teacher}" th:action="@{/teachers}" method="post">
+                <h1 th:text="${teacher.id == null} ? 'Ajouter un professeur' : 'Modifier un professeur'"></h1>
+
+
+                <div class="form-group">
+
+                    <input th:field="*{id}" hidden type="text">
+                </div>
+            <div class="form-group">
+                <!-- Nom et Prénom -->
+                <input th:field="*{lastName}" type="text" placeholder="NOM" required>
+                <input th:field="*{firstName}" type="text" placeholder="PRÉNOM" required>
+            </div>
+                <div class="form-group">
+                    <input th:field="*{phoneNumber}" type="text" placeholder="Téléphone" required>
+
+                </div>
+            <div class="form-group">
+                <input th:field="*{birthday}" type="date" placeholder="Birthday" required>
+                <input th:field="*{urlPicture}" type="text" placeholder="urlPicture" required>
+
+            </div>
+
+            <div class="form-group">
+                <label >Available:</label>
+                <label > <input th:field="*{available}" type="radio" value="true"> Oui</label>
+                <label > <input th:field="*{available}" type="radio" value="false"> Non</label>
+            </div>
+
+                <div class="form-group">
+                    <label for="specialty">Matière:</label>
+                    <select th:field="*{specialty}" id="specialty">
+                        <option value="">Sélectionner une matière</option>
+                        <option value="Math">Math</option>
+                        <option value="Physique">Physique</option>
+                        <option value="EPS">EPS</option>
+                        <option value="Anglais">Anglais</option>
+                        <option value="SVT">SVT</option>
+                        <option value="Philosophie">Philosophie</option>
+                        <option value="Francais">Francais</option>
+                    </select>
+                </div>
+
+                <div class="form-group group-radio" style="margin: 10px;">
+                    <label>Genre:</label>
+                    <label><input th:field="*{gender}" value="MAN" type="radio"> Homme</label>
+                    <label><input th:field="*{gender}" value="WOMAN" type="radio"> Femme</label>
+                    <label><input th:field="*{gender}" value="OTHER" type="radio"> Autre</label>
+                </div>
+
+            <div class="form-group group-button">
+                <!-- Boutons Annuler et Enregistrer -->
+                <a href="/teachers" class="lien-menu">
+                    <button type="button" id="annuler">Annuler</button>
+                </a>
+                <button id="enregistrer" type="submit">Enregistrer</button>
+            </div>
+
+
+        </div>
+    </div>
+</body>
+</html>
